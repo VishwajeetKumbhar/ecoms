@@ -10,6 +10,8 @@ const LoginSignup = () => {
     email: ""
   })
 
+  const url = "https://ecoms-backend-8aek.onrender.com/"
+
   const changHandler = (e) => {
     setFormData({
       ...formData, [e.target.name]: e.target.value
@@ -19,7 +21,7 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("Login Function Executed", formData)
     let respoceData;
-    await fetch("http://localhost:4000/login", {
+    await fetch(`${url}login`, {
       method: "POST",
       headers: {
         Accept: 'application/form-data',
@@ -39,7 +41,7 @@ const LoginSignup = () => {
     console.log("Signup Function Executed", formData)
 
     let respoceData;
-    await fetch("http://localhost:4000/signup", {
+    await fetch(`${url}signup`, {
       method: "POST",
       headers: {
         Accept: 'application/form-data',

@@ -5,8 +5,10 @@ import Item from '../Items/Item';
 const Popular = () => {
     const [popularProducts, setPopularProducts] = useState([])
 
+    const url = "https://ecoms-backend-8aek.onrender.com/"
+
     useEffect(() => {
-        fetch("http://localhost:4000/popularinwomen")
+        fetch(`${url}popularinwomen`)
             .then((responce) => responce.json())
             .then((data) => setPopularProducts(data))
     }, [])

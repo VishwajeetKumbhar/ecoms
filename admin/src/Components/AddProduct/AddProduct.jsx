@@ -4,6 +4,8 @@ import upload_area from "../../assets/upload_area.svg"
 
 const AddProduct = () => {
 
+    const url = "https://ecoms-backend-8aek.onrender.com/"
+
     const [image, setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name: "",
@@ -25,7 +27,7 @@ const AddProduct = () => {
         let Product = productDetails;
         let formData = new FormData()
         formData.append('product', image);
-        await fetch('http://localhost:4000/upload', {
+        await fetch(`${url}upload`, {
             method: "POST",
             headers: {
                 Accept: 'application/json'
@@ -36,15 +38,15 @@ const AddProduct = () => {
             Product.image = respoceData.image_url;
             console.log(Product)
 
-            await fetch('http://localhost:4000/addproduct', {
+            await fetch(`${url}addproduct`, {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': "application/json"
                 },
                 body: JSON.stringify(Product),
-            }).then((resp)=>resp.json()).then((data)=>{
-                data.success? alert("Product Added"):alert("Failed")
+            }).then((resp) => resp.json()).then((data) => {
+                data.success ? alert("Product Added") : alert("Failed")
             })
         }
     }
